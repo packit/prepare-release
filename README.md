@@ -9,4 +9,4 @@ GitHub Action to prepare a new release, which includes:
 Inputs:
 
 * `version`: version string to be used in for the release
-* `specfiles`: space separated paths of the specfiles to be updated
+* `specfiles`: comma separated paths of the specfiles to be updated
