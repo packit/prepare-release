@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import click
+import os
 from typing import List
 from pathlib import Path
 
@@ -13,6 +14,7 @@ from specfile import Specfile
 @click.argument("version")
 @click.argument("specfile_path", nargs=-1, type=click.Path(exists=True, dir_okay=False))
 def prepare_release(version: str, specfile_path: List[str]):
+    print(os.getcwd())
     new_entry = get_changelog(get_relevant_commits(Repo()))
     changelog_file = Path("CHANGELOG.md")
     current_changelog = changelog_file.read_text()
