@@ -19,7 +19,6 @@ repos:
     rev: v4.3.0
     hooks:
       - id: check-added-large-files
-        exclude: tests_recording/test_data/test_api/
       - id: check-ast
       - id: check-builtin-literals
       - id: check-docstring-first
@@ -42,17 +41,6 @@ repos:
     rev: v0.971
     hooks:
       - id: mypy
-        args: [--no-strict-optional, --ignore-missing-imports]
-        additional_dependencies:
-          [
-            types-click,
-            types-pkg_resources,
-            types-requests,
-            types-tabulate,
-            types-Deprecated,
-            types-PyYAML,
-            types-cachetools,
-          ]
   - repo: https://github.com/packit/pre-commit-hooks
     rev: 8db5a24e01b9f54aaa7a800f33c4b9aa619af1b9
     hooks:
