@@ -1,0 +1,15 @@
+name: Prepare release
+description: Prepare a new release
+inputs:
+  version:
+    description: Version to release
+    required: true
+  specfiles:
+    description: Specfiles to update
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.version }}
+    - ${{ inputs.specfiles }}
