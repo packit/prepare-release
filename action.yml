@@ -5,11 +5,11 @@ inputs:
     description: Version to release
     required: true
   specfiles:
-    description: Specfiles to update
+    description: Comma-separated list of specfiles to update
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.version }}
     - ${{ inputs.specfiles }}
