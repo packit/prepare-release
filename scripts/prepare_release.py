@@ -12,7 +12,8 @@ from specfile import Specfile
 @click.argument("version")
 @click.argument("specfile_path")
 def prepare_release(version: str, specfile_path: str):
-    new_entry = get_changelog(get_relevant_commits(Repo()))
+    repo = Repo()
+    new_entry = get_changelog(get_relevant_commits(repo), Path(repo.working_dir).name)
     changelog_file = Path("CHANGELOG.md")
     current_changelog = changelog_file.read_text()
     changelog_file.write_text(f"# {version}\n\n{new_entry}\n{current_changelog}")
