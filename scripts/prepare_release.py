@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import os
 import click
 from pathlib import Path
 
@@ -13,7 +14,10 @@ from specfile import Specfile
 @click.argument("specfile_path")
 def prepare_release(version: str, specfile_path: str):
     repo = Repo()
-    new_entry = get_changelog(get_relevant_commits(repo), Path(repo.working_dir).name)
+    repo_name = (
+        os.getenv("GITHUB_REPOSITORY", "/").split("/")[1] or Path(repo.working_dir).name
+    )
+    new_entry = get_changelog(get_relevant_commits(repo), repo_name)
     changelog_file = Path("CHANGELOG.md")
     current_changelog = changelog_file.read_text()
     changelog_file.write_text(f"# {version}\n\n{new_entry}\n{current_changelog}")
