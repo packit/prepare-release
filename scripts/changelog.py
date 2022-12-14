@@ -3,13 +3,13 @@
 # Copyright Contributors to the Packit project.
 # SPDX-License-Identifier: MIT
 
-import os
 import re
+from os import getenv
+from pathlib import Path
 from typing import Iterable, Optional
 
 import click
 from git import Commit, Repo
-from pathlib import Path
 from ogr import GithubService
 
 NOT_IMPORTANT_VALUES = ["n/a", "none", "none.", ""]
@@ -56,7 +56,7 @@ def convert_message(message: str) -> Optional[str]:
 
 
 def get_message_from_pr(repo: str, pr_id: str) -> str:
-    service = GithubService(token=os.getenv("GITHUB_TOKEN"))
+    service = GithubService(token=getenv("INPUT_TOKEN") or getenv("GITHUB_TOKEN"))
     project = service.get_project(namespace="packit", repo=repo)
     pr = project.get_pr(pr_id=int(pr_id))
     return pr.description
