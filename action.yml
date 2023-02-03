@@ -16,4 +16,3 @@ runs:
   args:
     - ${{ inputs.version }}
     - ${{ inputs.specfiles }}
-    - ${{ inputs.token }}
