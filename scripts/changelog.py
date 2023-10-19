@@ -80,7 +80,12 @@ def get_message_from_pr(repo: str, pr_id: str) -> str:
     return pr.description
 
 
-def get_changelog(commits: Iterable[Commit], repo: str, make_link: bool = False, include_pr: bool = True) -> str:
+def get_changelog(
+    commits: Iterable[Commit],
+    repo: str,
+    make_link: bool = False,
+    include_pr: bool = True,
+) -> str:
     changelog = ""
     for commit in commits:
         if PRE_COMMIT_CI_MESSAGE in commit.message:
@@ -94,7 +99,7 @@ def get_changelog(commits: Iterable[Commit], repo: str, make_link: bool = False,
                 pr_id = f"[{repo}#{pr_id}]({url})"
             else:
                 pr_id = "#" + pr_id
-            changelog += f"- {message}" (f" ({pr_id})\n" if include_pr else "\n")
+            changelog += f"- {message}"(f" ({pr_id})\n" if include_pr else "\n")
     return changelog
 
 
