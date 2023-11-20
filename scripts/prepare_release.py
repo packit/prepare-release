@@ -12,10 +12,10 @@ from specfile.macro_definitions import CommentOutStyle
 
 
 @click.command()
+@click.option("--prerelease-suffix-pattern")
+@click.option("--prerelease-suffix-macro")
 @click.argument("version")
 @click.argument("specfile_path")
-@click.argument("prerelease_suffix_pattern")
-@click.argument("prerelease_suffix_macro")
 def prepare_release(
     version: str,
     specfile_path: str,
