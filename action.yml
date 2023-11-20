@@ -9,7 +9,7 @@ inputs:
     required: true
   prerelease_suffix_pattern:
     description: Regular expression specifying recognized pre-release suffixes
-    default: '([.\\-_~^]?)(alpha|beta|rc|pre(view)?)([.\\-_]?\\d+)?'
+    default: "([.\\-_~^]?)(alpha|beta|rc|pre(view)?)([.\\-_]?\\d+)?"
   prerelease_suffix_macro:
     description: Macro in a spec file that controls whether version is a pre-release
     default: ""
@@ -20,7 +20,7 @@ runs:
   using: "docker"
   image: "Dockerfile"
   args:
+    - --prerelease-suffix-pattern="${{ inputs.prerelease_suffix_pattern }}"
+    - --prerelease-suffix-macro="${{ inputs.prerelease_suffix_macro }}"
     - ${{ inputs.version }}
     - ${{ inputs.specfiles }}
-    - ${{ inputs.prerelease_suffix_pattern }}
-    - ${{ inputs.prerelease_suffix_macro }}
