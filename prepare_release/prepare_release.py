@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Optional
 
 from git import Repo
-from changelog import get_changelog, get_relevant_commits
+from prepare_release.changelog import get_changelog, get_relevant_commits
 from specfile import Specfile
 from specfile.macro_definitions import CommentOutStyle
 
@@ -22,6 +22,7 @@ def prepare_release(
     prerelease_suffix_pattern: Optional[str] = None,
     prerelease_suffix_macro: Optional[str] = None,
 ):
+    click.echo("Preparing a new release")
     repo = Repo()
     repo_name = (
         os.getenv("GITHUB_REPOSITORY", "/").split("/")[1] or Path(repo.working_dir).name

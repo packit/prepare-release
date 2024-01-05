@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "prepare-release"
+version = "0.1.0"
+description = "Prepare a release with specfiles"
+authors = ["SpyTec <eric@spytec.se>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+GitPython = "^3.1.40"
+specfile = "^0.26.0"
+click = "^8.1.7"
+pytest = "^7.4.4"
+ogr = "^0.48.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

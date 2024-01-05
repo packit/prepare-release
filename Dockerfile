@@ -4,4 +4,4 @@ COPY scripts/ /scripts/
 
 RUN git config --system --add safe.directory /github/workspace
 
-ENTRYPOINT ["/scripts/prepare_release.py"]
+ENTRYPOINT ["/prepare_release/prepare_release.py"]
