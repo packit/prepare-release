@@ -15,10 +15,10 @@ from specfile.macro_definitions import CommentOutStyle
 @click.option("--prerelease-suffix-pattern")
 @click.option("--prerelease-suffix-macro")
 @click.argument("version")
-@click.argument("specfile_path")
+@click.argument("specfile_path", required=False, default="")
 def prepare_release(
     version: str,
-    specfile_path: str,
+    specfile_path: str = "",
     prerelease_suffix_pattern: Optional[str] = None,
     prerelease_suffix_macro: Optional[str] = None,
 ):
@@ -31,6 +31,8 @@ def prepare_release(
     current_changelog = changelog_file.read_text()
     changelog_file.write_text(f"# {version}\n\n{new_entry}\n{current_changelog}")
     for path in specfile_path.split(","):
+        if not path:
+            continue
         with Specfile(path, autosave=True) as specfile:
             specfile.update_version(
                 version,
